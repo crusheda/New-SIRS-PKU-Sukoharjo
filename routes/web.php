@@ -17,28 +17,68 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// Login GET
 Route::get('/admin/login', 'Auth\LoginController@showAdminLoginForm')->name('view.login.admin');
 Route::get('/direktur/login', 'Auth\LoginController@showDirekturLoginForm')->name('view.login.direktur');
+Route::get('/farmasi/login', 'Auth\LoginController@showFarmasiLoginForm')->name('view.login.farmasi');
+Route::get('/kantor/login', 'Auth\LoginController@showKantorLoginForm')->name('view.login.kantor');
+Route::get('/keuangan/login', 'Auth\LoginController@showKeuanganLoginForm')->name('view.login.keuangan');
 Route::get('/other_role/login', 'Auth\LoginController@showOtherRoleLoginForm')->name('view.login.other.role');
 
+// Login POST
 Route::post('/admin/login', 'Auth\LoginController@loginAdmin')->name('post.login.admin');
 Route::post('/direktur/login', 'Auth\LoginController@loginDirektur')->name('post.login.direktur');
+Route::post('/farmasi/login', 'Auth\LoginController@loginFarmasi')->name('post.login.farmasi');
+Route::post('/kantor/login', 'Auth\LoginController@loginKantor')->name('post.login.kantor');
+Route::post('/keuangan/login', 'Auth\LoginController@loginKeuangan')->name('post.login.keuangan');
 Route::post('/other_role/login', 'Auth\LoginController@loginOtherRole')->name('post.login.other.role');
+
+// Logout PASS
 Route::post('/logout', 'Auth\LoginController@logout')->name('post.logout');
 
+// Home Default Laravel
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::middleware(['auth'])->prefix('admin')->group(function (){
-    Route::get('/', function(){return view('page.admin.dashboard');})->name('admin.dashboard');
-    Route::get('/dashboard', function(){return view('page.admin.dashboard');})->name('admin.dashboard');
-});
+    // Page Admin
+    Route::middleware(['auth'])->prefix('admin')->group(function (){
+        Route::get('/', function(){return view('page.admin.dashboard');})->name('admin.dashboard');
+        Route::get('/dashboard', function(){return view('page.admin.dashboard');})->name('admin.dashboard');
+    });
 
-Route::middleware(['auth:other_role'])->prefix('other_role')->group(function (){
-    Route::get('/', function(){return view('page.other-role.dashboard');})->name('other.role.dashboard');
-    Route::get('/dashboard', function(){return view('page.other-role.dashboard');})->name('other.role.dashboard');
-});
+    // Page Direktur
+    Route::middleware(['auth:direktur'])->prefix('direktur')->group(function (){
+        // Route::get('/', function(){return view('page.direktur.dashboard');})->name('direktur.dashboard');
+        // Route::get('/dashboard', function(){return view('page.direktur.dashboard');})->name('direktur.dashboard');
+        Route::get('/dashboard', 'KunjunganController@index')->name('direktur.dashboard');
+        Route::get('/dashboard/cari', 'KunjunganController@filterKunjungan')->name('direktur.filterKunjungan');
+        Route::get('/kamar', 'KamarController@index')->name('direktur.kamar');
+        Route::get('/cetakpdf','KunjunganController@generatePDF')->name('direktur.cetak');
+    });
 
-Route::middleware(['auth:direktur'])->prefix('direktur')->group(function (){
-    Route::get('/', function(){return view('page.direktur.dashboard');})->name('direktur.dashboard');
-    Route::get('/dashboard', function(){return view('page.direktur.dashboard');})->name('direktur.dashboard');
-});
+    // Page Farmasi
+    Route::middleware(['auth:farmasi'])->prefix('farmasi')->group(function (){
+        Route::get('/', function(){return view('page.farmasi.dashboard');})->name('farmasi.dashboard');
+        Route::get('/dashboard', function(){return view('page.farmasi.dashboard');})->name('farmasi.dashboard');
+        Route::get('/dashboard/cariobat', 'PelayananController@obatPasien')->name('farmasi.cariobat');
+    });
+
+    // Page Kantor
+    Route::middleware(['auth:kantor'])->prefix('kantor')->group(function (){
+        Route::get('/', function(){return view('page.kantor.dashboard');})->name('kantor.dashboard');
+        Route::get('/dashboard', function(){return view('page.kantor.dashboard');})->name('kantor.dashboard');
+    });
+
+    // Page Keuangan
+    Route::middleware(['auth:keuangan'])->prefix('keuangan')->group(function (){
+        Route::get('/', function(){return view('page.keuangan.dashboard');})->name('keuangan.dashboard');
+        Route::get('/dashboard', function(){return view('page.keuangan.dashboard');})->name('keuangan.dashboard');
+    });
+
+    // Page Other_Role
+    Route::middleware(['auth:other_role'])->prefix('other_role')->group(function (){
+        Route::get('/', function(){return view('page.other-role.dashboard');})->name('other.role.dashboard');
+        Route::get('/dashboard', function(){return view('page.other-role.dashboard');})->name('other.role.dashboard');
+    });
+
+    // Page User
+    Route::get('/datakamar', 'PasienController@index')->name('user');

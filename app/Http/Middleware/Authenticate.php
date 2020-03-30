@@ -21,7 +21,17 @@ class Authenticate extends Middleware
             }
             elseif(Route::is('direktur.*')){
                 return route('view.login.direktur');
-            } else {
+            }
+            elseif(Route::is('farmasi.*')){
+                return route('view.login.farmasi');
+            }
+            elseif(Route::is('kantor.*')){
+                return route('view.login.kantor');
+            }
+            elseif(Route::is('keuangan.*')){
+                return route('view.login.keuangan');
+            }
+            else {
                 return route('view.login.other.role');
             }
         }

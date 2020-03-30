@@ -26,6 +26,18 @@ class RedirectIfAuthenticated
             return redirect('/direktur/dashboard');
         }
 
+        if (Auth::guard('farmasi')->check()) {
+            return redirect('/farmasi/dashboard');
+        }
+
+        if (Auth::guard('kantor')->check()) {
+            return redirect('/kantor/dashboard');
+        }
+
+        if (Auth::guard('keuangan')->check()) {
+            return redirect('/keuangan/dashboard');
+        }
+
         if (Auth::guard('other_role')->check()) {
             return redirect('/other_role/dashboard');
         }

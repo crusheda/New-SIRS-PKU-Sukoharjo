@@ -50,6 +50,21 @@ return [
             'driver' => 'session',
             'provider' => 'direktur',
         ],
+
+        'farmasi' => [
+            'driver' => 'session',
+            'provider' => 'farmasi',
+        ],
+
+        'kantor' => [
+            'driver' => 'session',
+            'provider' => 'kantor',
+        ],
+
+        'keuangan' => [
+            'driver' => 'session',
+            'provider' => 'keuangan',
+        ],
     ],
 
     /*
@@ -83,6 +98,21 @@ return [
         'direktur' => [
             'driver' => 'eloquent',
             'model' => App\Models\Direktur::class,
+        ],
+
+        'farmasi' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Farmasi::class,
+        ],
+
+        'kantor' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Kantor::class,
+        ],
+
+        'keuangan' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Keuangan::class,
         ],
 
         // 'users' => [

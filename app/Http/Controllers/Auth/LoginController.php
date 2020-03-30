@@ -49,12 +49,27 @@ class LoginController extends Controller
 
     public function showDirekturLoginForm()
     {
-        return view('auth.login-direktur');
+        return view('auth.login.page.login-direktur');
     }
 
     public function showAdminLoginForm()
     {
-        return view('auth.login-admin');
+        return view('auth.login.page.login-admin');
+    }
+
+    public function showFarmasiLoginForm()
+    {
+        return view('auth.login.page.login-farmasi');
+    }
+
+    public function showKantorLoginForm()
+    {
+        return view('auth.login.page.login-kantor');
+    }
+
+    public function showKeuanganLoginForm()
+    {
+        return view('auth.login.page.login-keuangan');
     }
 
     public function loginAdmin(Request $request)
@@ -125,6 +140,84 @@ class LoginController extends Controller
 
         if ($this->attemptLogin($request, 'direktur')) {
             return $this->sendLoginResponse($request, '/direktur/dashboard');
+        }
+
+        // If the login attempt was unsuccessful we will increment the number of attempts
+        // to login and redirect the user back to the login form. Of course, when this
+        // user surpasses their maximum number of attempts they will get locked out.
+        $this->incrementLoginAttempts($request);
+
+        return $this->sendFailedLoginResponse($request);
+    }
+
+    public function loginFarmasi(Request $request)
+    {
+        $this->validateLogin($request);
+
+        // If the class is using the ThrottlesLogins trait, we can automatically throttle
+        // the login attempts for this application. We'll key this by the username and
+        // the IP address of the client making these requests into this application.
+        if (method_exists($this, 'hasTooManyLoginAttempts') &&
+            $this->hasTooManyLoginAttempts($request)) {
+            $this->fireLockoutEvent($request);
+
+            return $this->sendLockoutResponse($request);
+        }
+
+        if ($this->attemptLogin($request, 'farmasi')) {
+            return $this->sendLoginResponse($request, '/farmasi/dashboard');
+        }
+
+        // If the login attempt was unsuccessful we will increment the number of attempts
+        // to login and redirect the user back to the login form. Of course, when this
+        // user surpasses their maximum number of attempts they will get locked out.
+        $this->incrementLoginAttempts($request);
+
+        return $this->sendFailedLoginResponse($request);
+    }
+
+    public function loginKantor(Request $request)
+    {
+        $this->validateLogin($request);
+
+        // If the class is using the ThrottlesLogins trait, we can automatically throttle
+        // the login attempts for this application. We'll key this by the username and
+        // the IP address of the client making these requests into this application.
+        if (method_exists($this, 'hasTooManyLoginAttempts') &&
+            $this->hasTooManyLoginAttempts($request)) {
+            $this->fireLockoutEvent($request);
+
+            return $this->sendLockoutResponse($request);
+        }
+
+        if ($this->attemptLogin($request, 'kantor')) {
+            return $this->sendLoginResponse($request, '/kantor/dashboard');
+        }
+
+        // If the login attempt was unsuccessful we will increment the number of attempts
+        // to login and redirect the user back to the login form. Of course, when this
+        // user surpasses their maximum number of attempts they will get locked out.
+        $this->incrementLoginAttempts($request);
+
+        return $this->sendFailedLoginResponse($request);
+    }
+
+    public function loginKeuangan(Request $request)
+    {
+        $this->validateLogin($request);
+
+        // If the class is using the ThrottlesLogins trait, we can automatically throttle
+        // the login attempts for this application. We'll key this by the username and
+        // the IP address of the client making these requests into this application.
+        if (method_exists($this, 'hasTooManyLoginAttempts') &&
+            $this->hasTooManyLoginAttempts($request)) {
+            $this->fireLockoutEvent($request);
+
+            return $this->sendLockoutResponse($request);
+        }
+
+        if ($this->attemptLogin($request, 'keuangan')) {
+            return $this->sendLoginResponse($request, '/keuangan/dashboard');
         }
 
         // If the login attempt was unsuccessful we will increment the number of attempts
