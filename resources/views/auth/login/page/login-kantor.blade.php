@@ -7,7 +7,7 @@
             <form class="login100-form validate-form flex-sb flex-w" method="POST" action="{{ route('post.login.kantor') }}">
                 @csrf
                 <span class="login100-form-title p-b-32">
-                    Login Admin
+                    Login Kantor
                 </span>
 
                 <span class="txt1 p-b-11">
