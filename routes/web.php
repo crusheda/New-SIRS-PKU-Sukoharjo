@@ -13,9 +13,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/adm', function () {
+    return view('index');
 });
+Route::get('admin/charts', function () {   return view('page.admin.charts');   });
+Route::get('admin/elements', function () {   return view('page.admin.elements');   });
+Route::get('admin/icons', function () {   return view('page.admin.icons');   });
+Route::get('admin/notifications', function () {   return view('page.admin.notifications');   });
+Route::get('admin/page-lockscreen', function () {   return view('page.admin.page-lockscreen');   });
+Route::get('admin/page-login', function () {   return view('page.admin.page-login');   });
+Route::get('admin/page-profil', function () {   return view('page.admin.page-profil');   });
+Route::get('admin/panels', function () {   return view('page.admin.panels');   });
+Route::get('admin/tables', function () {   return view('page.admin.tables');   });
+Route::get('admin/typography', function () {   return view('page.admin.typography');   });
 
 // Login GET
 Route::get('/admin/login', 'Auth\LoginController@showAdminLoginForm')->name('view.login.admin');
@@ -44,13 +54,14 @@ Route::get('/home', 'HomeController@index')->name('home');
         Route::get('/', function(){return view('page.admin.dashboard');})->name('admin.dashboard');
         Route::get('/dashboard', function(){return view('page.admin.dashboard');})->name('admin.dashboard');
     });
-
+    
     // Page Direktur
     Route::middleware(['auth:direktur'])->prefix('direktur')->group(function (){
         // Route::get('/', function(){return view('page.direktur.dashboard');})->name('direktur.dashboard');
-        // Route::get('/dashboard', function(){return view('page.direktur.dashboard');})->name('direktur.dashboard');
-        Route::get('/dashboard', 'KunjunganController@index')->name('direktur.dashboard');
-        Route::get('/dashboard/cari', 'KunjunganController@filterKunjungan')->name('direktur.filterKunjungan');
+        Route::get('/dashboard', function(){return view('page.direktur.dashboard');})->name('direktur.dashboard');
+        // Route::get('/dashboard', 'KunjunganController@index')->name('direktur.dashboard');
+        Route::get('/rekapharian', 'KunjunganController@index')->name('direktur.rekapharian');
+        Route::get('/rekapharian/cari', 'KunjunganController@filterKunjungan')->name('direktur.rekapharian.cari');
         Route::get('/kamar', 'KamarController@index')->name('direktur.kamar');
         Route::get('/cetakpdf','KunjunganController@generatePDF')->name('direktur.cetak');
     });

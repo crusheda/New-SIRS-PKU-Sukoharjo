@@ -1,244 +1,365 @@
-@extends('layouts.index')
+@extends('layouts.layout-direktur')
 
-@section('content')
-
-<!-- Begin Page Content -->
-<div class="container-fluid">
-
-    <!-- Page Heading -->
-    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-        {{-- <a href="{{ route('cetak') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" disabled><i class="fas fa-download fa-sm text-white-50"></i> CETAK</a> --}}
-    </div>
-
-    <div class="card shadow mb-4">
-        <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Data Rawat Inap Pasien <strong class="text-danger">(Hari Ini)</strong></h6>
-            <strong class="text-success">{{ $list['akomodasi']['now'] }}</strong>
-        </div>
-        <div class="card-body">
-            <div class="table-responsive">
-                <table class="table table-bordered table-hover table-sm" width="100%" cellspacing="0">
-                    <thead>
-                        <tr>
-                            <th></th>
-                            <th>Bangsal Lt.3</th>
-                            <th>Bangsal Lt.4</th>
-                            <th>Kebidanan</th>
-                            <th>Perinatologi</th>
-                            <th>Isolasi</th>
-                            <th>ICU</th>
-                        </tr>
-                    </thead>
-                    <tfoot>
-                        <tr>
-                            <th>Total Jml</th>
-                            <th colspan="6">{{ $list['akomodasi']['total'][0]->jumlah }}</th>
-                        </tr>
-                    </tfoot>
-                    <tbody>
-                        <tr>
-                            <th>Jml</th>
-                            <td>{{ $list['akomodasi']['lt3'][0]->jumlah }}</td>
-                            <td>{{ $list['akomodasi']['lt4'][0]->jumlah }}</td>
-                            <td>{{ $list['akomodasi']['keb'][0]->jumlah }}</td>
-                            <td>{{ $list['akomodasi']['per'][0]->jumlah }}</td>
-                            <td>{{ $list['akomodasi']['iso'][0]->jumlah }}</td>
-                            <td>{{ $list['akomodasi']['icu'][0]->jumlah }}</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-    <div class="card shadow mb-4">
-
-        <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Rekap Kunjungan Pasien</h6>
-            <strong class="text-success"><b>{{ $list['kunjungan']['yest'] }}</b></strong><hr>
-            <form class="form-inline" action="{{ route('direktur.filterKunjungan') }}" method="GET">
-                <i class="fas fa-calendar-alt fa-lg fa-fw text-warning"></i>  Filter
-                <select onchange="submitBtn()" class="custom-select" style="width: auto;margin-left:10px;margin-right:10px" name="tanggal" id="tanggal" required>
-                    <option hidden selected>Tgl</option>
-                    <option value="01">1</option>
-                    <option value="02">2</option>
-                    <option value="03">3</option>
-                    <option value="04">4</option>
-                    <option value="05">5</option>
-                    <option value="06">6</option>
-                    <option value="07">7</option>
-                    <option value="08">8</option>
-                    <option value="09">9</option>
-                    <option value="10">10</option>
-                    <option value="11">11</option>
-                    <option value="12">12</option>
-                    <option value="13">13</option>
-                    <option value="14">14</option>
-                    <option value="15">15</option>
-                    <option value="16">16</option>
-                    <option value="17">17</option>
-                    <option value="18">18</option>
-                    <option value="19">19</option>
-                    <option value="20">20</option>
-                    <option value="21">21</option>
-                    <option value="22">22</option>
-                    <option value="23">23</option>
-                    <option value="24">24</option>
-                    <option value="25">25</option>
-                    <option value="26">26</option>
-                    <option value="27">27</option>
-                    <option value="28">28</option>
-                    <option value="29">29</option>
-                    <option value="30">30</option>
-                </select>
-                <select onchange="submitBtn()" class="custom-select" style="width: auto;margin-right:10px" name="bulan" id="bulan" required>
-                    <option hidden selected>Bln</option>
-                    <option value="01">Januari</option>
-                    <option value="02">Februari</option>
-                    <option value="03">Maret</option>
-                    <option value="04">April</option>
-                    <option value="05">Mei</option>
-                    <option value="06">Juni</option>
-                    <option value="07">Juli</option>
-                    <option value="08">Agustus</option>
-                    <option value="09">September</option>
-                    <option value="10">Oktober</option>
-                    <option value="11">November</option>
-                    <option value="12">Desember</option>
-                </select>
-                <select onchange="submitBtn()" class="custom-select" style="width: auto;margin-right:10px" name="tahun" id="tahun" required>
-                    <option hidden selected>Thn</option>
-                    <option value="2020">2020</option>
-                    <option value="2019">2019</option>
-                </select>
-                <button id="submit" class="btn btn-primary" disabled>Submit</button>
-            </form>
-        </div>
-        <div class="card-body">
-            <div class="row">
-                <div class="col-md-5">
-                    <div class="table-responsive">
-                        <table class="table table-bordered table-hover table-sm" id="tabelrekap" width="100%" cellspacing="0">
-                            <thead>
-                                <tr>
-                                    <th>Perincian</th>
-                                    <th>Jml</th>
-                                </tr>
-                            </thead>
-                            <tfoot>
-                                <tr>
-                                    <th>Total Jml</th>
-                                    <th colspan="11">{{ $list['kunjungan']['total'][0]->jumlah }}</th>
-                                </tr>
-                            </tfoot>
-                            <tbody>
-                                <tr>
-                                    <th>Rawat Darurat / Poli Umum (IGD)</th>
-                                    <td>{{ $list['kunjungan']['igd'][0]->jumlah }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Poli Anak</th>
-                                    <td>{{ $list['kunjungan']['anak'][0]->jumlah }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Poli Bedah</th>
-                                    <td>{{ $list['kunjungan']['bedah'][0]->jumlah }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Poli Gigi</th>
-                                    <td>{{ $list['kunjungan']['gigi'][0]->jumlah }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Poli Dalam</th>
-                                    <td>{{ $list['kunjungan']['dalam'][0]->jumlah }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Poli Ortopedi</th>
-                                    <td>{{ $list['kunjungan']['orto'][0]->jumlah }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Poli Jiwa</th>
-                                    <td>{{ $list['kunjungan']['jiwa'][0]->jumlah }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Poli Kulit / Kelamin</th>
-                                    <td>{{ $list['kunjungan']['kulit'][0]->jumlah }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Poli THT</th>
-                                    <td>{{ $list['kunjungan']['tht'][0]->jumlah }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Poli Paru</th>
-                                    <td>{{ $list['kunjungan']['paru'][0]->jumlah }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Poli Syaraf</th>
-                                    <td>{{ $list['kunjungan']['syaraf'][0]->jumlah }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Rehabilitasi Medik</th>
-                                    <td>{{ $list['kunjungan']['rehab'][0]->jumlah }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Kebidanan</th>
-                                    <td>{{ $list['kunjungan']['keb'][0]->jumlah }}</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                <div class="col-md-7">
-                    <div class="table-responsive">
-                        <table class="table table-bordered table-hover table-sm" id="dataTable" width="100%" cellspacing="0">
-                            <thead>
-                                <tr>
-                                    <th colspan="2">Pasien Pulang</th>
-                                </tr>
-                                <tr>
-                                    <th>UMUM</th>
-                                    <th>BPJS</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>{{ $list['kunjungan']['umum'][0]->jumlah }}</td>
-                                    <td>{{ $list['kunjungan']['bpjs'][0]->jumlah }}</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="table-responsive">
-                        <table class="table table-bordered table-hover table-sm" id="dataTable" width="100%" cellspacing="0">
-                            <thead>
-                                <tr>
-                                <th>Rawat Inap</th>
-                                <th>Laboratorium</th>
-                                <th>Radiologi</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>{{ $list['kunjungan']['inap'][0]->jumlah }}</td>
-                                    <td>{{ count($list['kunjungan']['lab']) }}</td>
-                                    <td>{{ count($list['kunjungan']['rad']) }}</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+@section('content')	
+<!-- MAIN -->
+<div class="main">
+	<!-- MAIN CONTENT -->
+	<div class="main-content">
+		<div class="container-fluid">
+			<!-- OVERVIEW -->
+			<div class="panel panel-headline">
+				<div class="panel-heading">
+					<h3 class="panel-title">Weekly Overview</h3>
+					<p class="panel-subtitle">Period: Oct 14, 2016 - Oct 21, 2016</p>
+				</div>
+				<div class="panel-body">
+					<div class="row">
+						<div class="col-md-3">
+							<div class="metric">
+								<span class="icon"><i class="fa fa-download"></i></span>
+								<p>
+									<span class="number">1,252</span>
+									<span class="title">Downloads</span>
+								</p>
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="metric">
+								<span class="icon"><i class="fa fa-shopping-bag"></i></span>
+								<p>
+									<span class="number">203</span>
+									<span class="title">Sales</span>
+								</p>
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="metric">
+								<span class="icon"><i class="fa fa-eye"></i></span>
+								<p>
+									<span class="number">274,678</span>
+									<span class="title">Visits</span>
+								</p>
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="metric">
+								<span class="icon"><i class="fa fa-bar-chart"></i></span>
+								<p>
+									<span class="number">35%</span>
+									<span class="title">Conversions</span>
+								</p>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-9">
+							<div id="headline-chart" class="ct-chart"></div>
+						</div>
+						<div class="col-md-3">
+							<div class="weekly-summary text-right">
+								<span class="number">2,315</span> <span class="percentage"><i class="fa fa-caret-up text-success"></i> 12%</span>
+								<span class="info-label">Total Sales</span>
+							</div>
+							<div class="weekly-summary text-right">
+								<span class="number">$5,758</span> <span class="percentage"><i class="fa fa-caret-up text-success"></i> 23%</span>
+								<span class="info-label">Monthly Income</span>
+							</div>
+							<div class="weekly-summary text-right">
+								<span class="number">$65,938</span> <span class="percentage"><i class="fa fa-caret-down text-danger"></i> 8%</span>
+								<span class="info-label">Total Income</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- END OVERVIEW -->
+			<div class="row">
+				<div class="col-md-6">
+					<!-- RECENT PURCHASES -->
+					<div class="panel">
+						<div class="panel-heading">
+							<h3 class="panel-title">Recent Purchases</h3>
+							<div class="right">
+								<button type="button" class="btn-toggle-collapse"><i class="lnr lnr-chevron-up"></i></button>
+								<button type="button" class="btn-remove"><i class="lnr lnr-cross"></i></button>
+							</div>
+						</div>
+						<div class="panel-body no-padding">
+							<table class="table table-striped">
+								<thead>
+									<tr>
+										<th>Order No.</th>
+										<th>Name</th>
+										<th>Amount</th>
+										<th>Date &amp; Time</th>
+										<th>Status</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td><a href="#">763648</a></td>
+										<td>Steve</td>
+										<td>$122</td>
+										<td>Oct 21, 2016</td>
+										<td><span class="label label-success">COMPLETED</span></td>
+									</tr>
+									<tr>
+										<td><a href="#">763649</a></td>
+										<td>Amber</td>
+										<td>$62</td>
+										<td>Oct 21, 2016</td>
+										<td><span class="label label-warning">PENDING</span></td>
+									</tr>
+									<tr>
+										<td><a href="#">763650</a></td>
+										<td>Michael</td>
+										<td>$34</td>
+										<td>Oct 18, 2016</td>
+										<td><span class="label label-danger">FAILED</span></td>
+									</tr>
+									<tr>
+										<td><a href="#">763651</a></td>
+										<td>Roger</td>
+										<td>$186</td>
+										<td>Oct 17, 2016</td>
+										<td><span class="label label-success">SUCCESS</span></td>
+									</tr>
+									<tr>
+										<td><a href="#">763652</a></td>
+										<td>Smith</td>
+										<td>$362</td>
+										<td>Oct 16, 2016</td>
+										<td><span class="label label-success">SUCCESS</span></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<div class="panel-footer">
+							<div class="row">
+								<div class="col-md-6"><span class="panel-note"><i class="fa fa-clock-o"></i> Last 24 hours</span></div>
+								<div class="col-md-6 text-right"><a href="#" class="btn btn-primary">View All Purchases</a></div>
+							</div>
+						</div>
+					</div>
+					<!-- END RECENT PURCHASES -->
+				</div>
+				<div class="col-md-6">
+					<!-- MULTI CHARTS -->
+					<div class="panel">
+						<div class="panel-heading">
+							<h3 class="panel-title">Projection vs. Realization</h3>
+							<div class="right">
+								<button type="button" class="btn-toggle-collapse"><i class="lnr lnr-chevron-up"></i></button>
+								<button type="button" class="btn-remove"><i class="lnr lnr-cross"></i></button>
+							</div>
+						</div>
+						<div class="panel-body">
+							<div id="visits-trends-chart" class="ct-chart"></div>
+						</div>
+					</div>
+					<!-- END MULTI CHARTS -->
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-7">
+					<!-- TODO LIST -->
+					<div class="panel">
+						<div class="panel-heading">
+							<h3 class="panel-title">To-Do List</h3>
+							<div class="right">
+								<button type="button" class="btn-toggle-collapse"><i class="lnr lnr-chevron-up"></i></button>
+								<button type="button" class="btn-remove"><i class="lnr lnr-cross"></i></button>
+							</div>
+						</div>
+						<div class="panel-body">
+							<ul class="list-unstyled todo-list">
+								<li>
+									<label class="control-inline fancy-checkbox">
+										<input type="checkbox"><span></span>
+									</label>
+									<p>
+										<span class="title">Restart Server</span>
+										<span class="short-description">Dynamically integrate client-centric technologies without cooperative resources.</span>
+										<span class="date">Oct 9, 2016</span>
+									</p>
+									<div class="controls">
+										<a href="#"><i class="icon-software icon-software-pencil"></i></a> <a href="#"><i class="icon-arrows icon-arrows-circle-remove"></i></a>
+									</div>
+								</li>
+								<li>
+									<label class="control-inline fancy-checkbox">
+										<input type="checkbox"><span></span>
+									</label>
+									<p>
+										<span class="title">Retest Upload Scenario</span>
+										<span class="short-description">Compellingly implement clicks-and-mortar relationships without highly efficient metrics.</span>
+										<span class="date">Oct 23, 2016</span>
+									</p>
+									<div class="controls">
+										<a href="#"><i class="icon-software icon-software-pencil"></i></a> <a href="#"><i class="icon-arrows icon-arrows-circle-remove"></i></a>
+									</div>
+								</li>
+								<li>
+									<label class="control-inline fancy-checkbox">
+										<input type="checkbox"><span></span>
+									</label>
+									<p>
+										<strong>Functional Spec Meeting</strong>
+										<span class="short-description">Monotonectally formulate client-focused core competencies after parallel web-readiness.</span>
+										<span class="date">Oct 11, 2016</span>
+									</p>
+									<div class="controls">
+										<a href="#"><i class="icon-software icon-software-pencil"></i></a> <a href="#"><i class="icon-arrows icon-arrows-circle-remove"></i></a>
+									</div>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<!-- END TODO LIST -->
+				</div>
+				<div class="col-md-5">
+					<!-- TIMELINE -->
+					<div class="panel panel-scrolling">
+						<div class="panel-heading">
+							<h3 class="panel-title">Recent User Activity</h3>
+							<div class="right">
+								<button type="button" class="btn-toggle-collapse"><i class="lnr lnr-chevron-up"></i></button>
+								<button type="button" class="btn-remove"><i class="lnr lnr-cross"></i></button>
+							</div>
+						</div>
+						<div class="panel-body">
+							<ul class="list-unstyled activity-list">
+								<li>
+									<img src="{{ asset('assets/img/user1.png') }}" alt="Avatar" class="img-circle pull-left avatar">
+									<p><a href="#">Michael</a> has achieved 80% of his completed tasks <span class="timestamp">20 minutes ago</span></p>
+								</li>
+								<li>
+									<img src="{{ asset('assets/img/user2.png') }}" alt="Avatar" class="img-circle pull-left avatar">
+									<p><a href="#">Daniel</a> has been added as a team member to project <a href="#">System Update</a> <span class="timestamp">Yesterday</span></p>
+								</li>
+								<li>
+									<img src="{{ asset('assets/img/user3.png') }}" alt="Avatar" class="img-circle pull-left avatar">
+									<p><a href="#">Martha</a> created a new<a href="#">Landing Page</a> <span class="timestamp">2 days ago</span></p>
+								</li>
+								<li>
+									<img src="{{ asset('assets/img/user4.png') }}" alt="Avatar" class="img-circle pull-left avatar">
+									<p><a href="#">Jane</a> has completed all of the tasks <span class="timestamp">2 days ago</span></p>
+								</li>
+								<li>
+									<img src="{{ asset('assets/img/user5.png') }}" alt="Avatar" class="img-circle pull-left avatar">
+									<p><a href="#">Jason</a> started a discussion about <a href="#">Weekly Meeting</a> <span class="timestamp">3 days ago</span></p>
+								</li>
+							</ul>
+							<button type="button" class="btn btn-primary btn-bottom center-block">Load More</button>
+						</div>
+					</div>
+					<!-- END TIMELINE -->
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-4">
+					<!-- TASKS -->
+					<div class="panel">
+						<div class="panel-heading">
+							<h3 class="panel-title">My Tasks</h3>
+							<div class="right">
+								<button type="button" class="btn-toggle-collapse"><i class="lnr lnr-chevron-up"></i></button>
+								<button type="button" class="btn-remove"><i class="lnr lnr-cross"></i></button>
+							</div>
+						</div>
+						<div class="panel-body">
+							<ul class="list-unstyled task-list">
+								<li>
+									<p>Updating Users Settings <span class="label-percent">23%</span></p>
+									<div class="progress progress-xs">
+										<div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="23" aria-valuemin="0" aria-valuemax="100" style="width:23%">
+											<span class="sr-only">23% Complete</span>
+										</div>
+									</div>
+								</li>
+								<li>
+									<p>Load &amp; Stress Test <span class="label-percent">80%</span></p>
+									<div class="progress progress-xs">
+										<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
+											<span class="sr-only">80% Complete</span>
+										</div>
+									</div>
+								</li>
+								<li>
+									<p>Data Duplication Check <span class="label-percent">100%</span></p>
+									<div class="progress progress-xs">
+										<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+											<span class="sr-only">Success</span>
+										</div>
+									</div>
+								</li>
+								<li>
+									<p>Server Check <span class="label-percent">45%</span></p>
+									<div class="progress progress-xs">
+										<div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 45%">
+											<span class="sr-only">45% Complete</span>
+										</div>
+									</div>
+								</li>
+								<li>
+									<p>Mobile App Development <span class="label-percent">10%</span></p>
+									<div class="progress progress-xs">
+										<div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100" style="width: 10%">
+											<span class="sr-only">10% Complete</span>
+										</div>
+									</div>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<!-- END TASKS -->
+				</div>
+				<div class="col-md-4">
+					<!-- VISIT CHART -->
+					<div class="panel">
+						<div class="panel-heading">
+							<h3 class="panel-title">Website Visits</h3>
+							<div class="right">
+								<button type="button" class="btn-toggle-collapse"><i class="lnr lnr-chevron-up"></i></button>
+								<button type="button" class="btn-remove"><i class="lnr lnr-cross"></i></button>
+							</div>
+						</div>
+						<div class="panel-body">
+							<div id="visits-chart" class="ct-chart"></div>
+						</div>
+					</div>
+					<!-- END VISIT CHART -->
+				</div>
+				<div class="col-md-4">
+					<!-- REALTIME CHART -->
+					<div class="panel">
+						<div class="panel-heading">
+							<h3 class="panel-title">System Load</h3>
+							<div class="right">
+								<button type="button" class="btn-toggle-collapse"><i class="lnr lnr-chevron-up"></i></button>
+								<button type="button" class="btn-remove"><i class="lnr lnr-cross"></i></button>
+							</div>
+						</div>
+						<div class="panel-body">
+							<div id="system-load" class="easy-pie-chart" data-percent="70">
+								<span class="percent">70</span>
+							</div>
+							<h4>CPU Load</h4>
+							<ul class="list-unstyled list-justify">
+								<li>High: <span>95%</span></li>
+								<li>Average: <span>87%</span></li>
+								<li>Low: <span>20%</span></li>
+								<li>Threads: <span>996</span></li>
+								<li>Processes: <span>259</span></li>
+							</ul>
+						</div>
+					</div>
+					<!-- END REALTIME CHART -->
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- END MAIN CONTENT -->
 </div>
-<script>
-    function submitBtn() {
-        var tanggal = document.getElementById("tanggal").value;
-        var bulan = document.getElementById("bulan").value;
-        var tahun = document.getElementById("tahun").value;
-        if (tanggal != "Tgl" && bulan != "Bln" && tahun != "Thn" ) {
-            document.getElementById("submit").disabled = false;
-        }
-    }
-</script>
+<!-- END MAIN -->
 @endsection

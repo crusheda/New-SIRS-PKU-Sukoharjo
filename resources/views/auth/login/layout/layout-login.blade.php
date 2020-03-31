@@ -1,53 +1,34 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="en" class="fullscreen-bg">
+
 <head>
-	<title>Login V14</title>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-<!--===============================================================================================-->
-	<link rel="icon" type="image/png" href="{{ asset('css-login/images/icons/favicon.ico') }}"/>
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{{ asset('css-login/vendor/bootstrap/css/bootstrap.min.css') }}">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{{ asset('css-login/fonts/font-awesome-4.7.0/css/font-awesome.min.css') }}">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{{ asset('css-login/fonts/Linearicons-Free-v1.0.0/icon-font.min.css') }}">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{{ asset('css-login/vendor/animate/animate.css') }}">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{{ asset('css-login/vendor/css-hamburgers/hamburgers.min.css') }}">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{{ asset('css-login/vendor/animsition/css/animsition.min.css') }}">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{{ asset('css-login/vendor/select2/select2.min.css') }}">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{{ asset('css-login/vendor/daterangepicker/daterangepicker.css') }}">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{{ asset('css-login/css/util.css') }}">
-	<link rel="stylesheet" type="text/css" href="{{ asset('css-login/css/main.css') }}">
-<!--===============================================================================================-->
+	<title>Login | Rumah Sakit PKU Muhammadiyah Sukoharjo</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+	<!-- VENDOR CSS -->
+	<link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
+	<link rel="stylesheet" href="{{ asset('assets/vendor/font-awesome/css/font-awesome.min.css') }}">
+	<link rel="stylesheet" href="{{ asset('assets/vendor/linearicons/style.css') }}">
+	<!-- MAIN CSS -->
+	<link rel="stylesheet" href="{{ asset('assets/css/main.css') }}">
+	<!-- FOR DEMO PURPOSES ONLY. You should remove this in your project -->
+	<link rel="stylesheet" href="{{ asset('assets/css/demo.css') }}">
+	<!-- GOOGLE FONTS -->
+	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
+	<!-- ICONS -->
+	<link rel="apple-touch-icon" sizes="76x76" href="{{ asset('assets/img/apple-icon.png') }}">
+	<link rel="icon" type="image/png" sizes="96x96" href="{{ asset('sb-admin2/img/pku_ico.png') }}">
 </head>
+
 <body>
+	<!-- WRAPPER -->
+	<div id="wrapper">
 
-    @yield('content')
-    <div id="dropDownSelect1"></div>
-
-    <!--===============================================================================================-->
-    <script src="{{ asset('css-login/vendor/jquery/jquery-3.2.1.min.js') }}"></script>
-    <!--===============================================================================================-->
-    <script src="{{ asset('css-login/vendor/animsition/js/animsition.min.js') }}"></script>
-    <!--===============================================================================================-->
-    <script src="{{ asset('css-login/vendor/bootstrap/js/popper.js') }}"></script>
-    <script src="{{ asset('css-login/vendor/bootstrap/js/bootstrap.min.js') }}"></script>
-    <!--===============================================================================================-->
-    <script src="{{ asset('css-login/vendor/select2/select2.min.js') }}"></script>
-    <!--===============================================================================================-->
-    <script src="{{ asset('css-login/vendor/daterangepicker/moment.min.js') }}"></script>
-    <script src="{{ asset('css-login/vendor/daterangepicker/daterangepicker.js') }}"></script>
-    <!--===============================================================================================-->
-    <script src="{{ asset('css-login/vendor/countdowntime/countdowntime.js') }}"></script>
-    <!--===============================================================================================-->
-    <script src="{{ asset('css-login/js/main.js') }}"></script>
-
+        @yield('content')
+        
+	</div>
+	<!-- END WRAPPER -->
 </body>
+
 </html>

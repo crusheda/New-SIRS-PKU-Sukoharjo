@@ -20,7 +20,7 @@ class KunjunganController extends Controller
     public function index()
     {
         //
-        header( "refresh:300;url=dashboard" );
+        header( "refresh:300;url=rekapharian" );
         // ini_set('memory_limit', '-1');
         $showdata = [];
 
@@ -37,7 +37,7 @@ class KunjunganController extends Controller
         // print_r($showdata);
         // die();
 
-        return view('page.direktur.dashboard')->with('list', $showdata);
+        return view('page.direktur.rekap-harian')->with('list', $showdata);
     }
 
     public function kunjungan()
@@ -396,7 +396,7 @@ class KunjunganController extends Controller
 
             // print_r($now);
             // die();
-        return view('page.direktur.filterKunjungan')->with('list', $query_kunjungan);
+        return view('page.direktur.rekap-harian-cari')->with('list', $query_kunjungan);
     }
 
     public function generatePDF()
