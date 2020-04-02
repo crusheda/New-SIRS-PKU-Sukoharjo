@@ -1,7 +1,7 @@
 <!-- NAVBAR -->
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="brand">
-        <a href="{{ route('direktur.dashboard') }}"><img src="{{ asset('assets/img/logo_pku_big.png') }}" style="height:32px" alt="PKU Logo" class="img-responsive logo"></a>
+        <a href="{{ route('farmasi.dashboard') }}"><img src="{{ asset('assets/img/logo_pku_big.png') }}" style="height:32px" alt="PKU Logo" class="img-responsive logo"></a>
     </div>
     <div class="container-fluid">
         <div class="navbar-btn">

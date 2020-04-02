@@ -13,7 +13,7 @@ class KamarController extends Controller
     public function index()
     {
         # code...
-        header( "refresh:30;url=kamar" );
+        header( "refresh:500;url=kamar" );
         $now = Carbon::now()->addHours(7);
         $kamar_terisi = "SELECT * FROM SET_TMPTIDUR st JOIN REF_SUBINSTALASI rs ON st.REF_SUBINSTALASI = rs.REF_SUBINSTALASI
         WHERE REG_KUNJUNGANPASIEN is not null AND st.AKTIF = '1' ORDER BY SET_TMPTIDUR ASC";

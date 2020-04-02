@@ -1,6 +1,6 @@
 @extends('layouts.layout-direktur')
 
-@section('content')	
+@section('content')
 <!-- MAIN -->
 <div class="main">
 	<!-- MAIN CONTENT -->

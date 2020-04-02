@@ -8,7 +8,7 @@ use App\akomodasi;
 use Carbon\Carbon;
 
 use Illuminate\Support\Facades\DB;
-use PDF;
+use \PDF;
 
 class KunjunganController extends Controller
 {
@@ -402,9 +402,9 @@ class KunjunganController extends Controller
     public function generatePDF()
     {
         # code...
-        ini_set('memory_limit', '-1');
-        $now = substr(Carbon::now(),0,10);
+        $now = Carbon::now()->addHours(7);
         $yest = substr(Carbon::yesterday(),0,10);
+        $filename = substr(Carbon::now(),0,10);
 
         $kunjungan = $this->kunjungan();
         $akomodasi = $this->akomodasi();
@@ -417,8 +417,12 @@ class KunjunganController extends Controller
             'akomodasi' => $akomodasi
         ];
 
+        // print_r($yest2);
+        // die();
+
         $pdf = PDF::loadView('page.direktur.cetak', $data);
-        return $pdf->download($now);
+        // return $pdf->download();
+        return $pdf->stream($filename);
     }
 
     /**

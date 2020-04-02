@@ -54,7 +54,7 @@ Route::get('/home', 'HomeController@index')->name('home');
         Route::get('/', function(){return view('page.admin.dashboard');})->name('admin.dashboard');
         Route::get('/dashboard', function(){return view('page.admin.dashboard');})->name('admin.dashboard');
     });
-    
+
     // Page Direktur
     Route::middleware(['auth:direktur'])->prefix('direktur')->group(function (){
         // Route::get('/', function(){return view('page.direktur.dashboard');})->name('direktur.dashboard');
@@ -70,7 +70,9 @@ Route::get('/home', 'HomeController@index')->name('home');
     Route::middleware(['auth:farmasi'])->prefix('farmasi')->group(function (){
         Route::get('/', function(){return view('page.farmasi.dashboard');})->name('farmasi.dashboard');
         Route::get('/dashboard', function(){return view('page.farmasi.dashboard');})->name('farmasi.dashboard');
-        Route::get('/dashboard/cariobat', 'PelayananController@obatPasien')->name('farmasi.cariobat');
+        Route::get('/lisinopril', 'PelayananController@obatLisinopril')->name('farmasi.lisinopril');
+        Route::get('/tanapres', 'PelayananController@obatTanapres')->name('farmasi.tanapres');
+        Route::get('/captopril', 'PelayananController@obatCaptopril')->name('farmasi.captopril');
     });
 
     // Page Kantor

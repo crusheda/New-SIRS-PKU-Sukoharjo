@@ -1,6 +1,6 @@
-@extends('layouts.universal')
+@extends('layouts.layout-admin')
 
-@section('content')	
+@section('content')
 		<!-- MAIN -->
 		<div class="main">
 			<!-- MAIN CONTENT -->

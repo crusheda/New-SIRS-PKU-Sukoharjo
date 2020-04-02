@@ -1,7 +1,7 @@
 <html>
 <head>
     <title>{{ $now }}</title>
-    <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
     <style type="text/css">
@@ -9,12 +9,46 @@
 		table tr th{
 			font-size: 9pt;
 		}
-	</style>
+    </style>
     <center>
-        <h4>Data Kunjungan Pasien Per Hari</h4>
-        <p>( {{ $yest }} )</p>
+        <h4>Data Kunjungan Pasien <strong class="text-danger">Hari Ini</strong></h4>
+        <p>Waktu: {{ $now }}</p>
     </center>
-    {{-- Ini Cetak
+    <table class="table table-bordered table-hover table-sm">
+        <thead>
+            <tr>
+                <th></th>
+                <th>Bangsal Lt.3</th>
+                <th>Bangsal Lt.4</th>
+                <th>Kebidanan</th>
+                <th>Perinatologi</th>
+                <th>Isolasi</th>
+                <th>ICU</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th>Jml</th>
+                <td>{{ $akomodasi['lt3'][0]->jumlah }}</td>
+                <td>{{ $akomodasi['lt4'][0]->jumlah }}</td>
+                <td>{{ $akomodasi['keb'][0]->jumlah }}</td>
+                <td>{{ $akomodasi['per'][0]->jumlah }}</td>
+                <td>{{ $akomodasi['iso'][0]->jumlah }}</td>
+                <td>{{ $akomodasi['icu'][0]->jumlah }}</td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <th>Total Jml</th>
+                <th colspan="6">{{ $akomodasi['total'][0]->jumlah }}</th>
+            </tr>
+        </tfoot>
+    </table>
+    <hr>
+    <center>
+        <h4>Data Kunjungan Pasien <strong class="text-warning">Kemarin</strong></h4>
+        <p>Waktu: {{ $yest }}</p>
+    </center>
     <table class="table table-bordered table-hover table-sm">
         <thead>
             <tr>
@@ -22,12 +56,6 @@
                 <th>Jml</th>
             </tr>
         </thead>
-        <tfoot>
-            <tr>
-                <th>Total Jml</th>
-                <th colspan="11">{{ $kunjungan['total'][0]->jumlah }}</th>
-            </tr>
-        </tfoot>
         <tbody>
             <tr>
                 <th>Rawat Darurat / Poli Umum (IGD)</th>
@@ -82,6 +110,12 @@
                 <td>{{ $kunjungan['keb'][0]->jumlah }}</td>
             </tr>
         </tbody>
+        <tfoot>
+            <tr>
+                <th>Total Jml</th>
+                <th colspan="11">{{ $kunjungan['total'][0]->jumlah }}</th>
+            </tr>
+        </tfoot>
     </table>
     <table class="table table-bordered table-hover table-sm">
         <thead>
@@ -115,6 +149,6 @@
                 <td>{{ count($kunjungan['rad']) }}</td>
             </tr>
         </tbody>
-    </table> --}}
+    </table>
 </body>
 </html>
