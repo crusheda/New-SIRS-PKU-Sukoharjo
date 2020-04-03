@@ -3,7 +3,7 @@
 @section('content')	
 <!-- MAIN -->
 <div class="main">
-	<!-- MAIN CONTENT -->
+	{{--  <!-- MAIN CONTENT -->
 	<div class="main-content">
 		<div class="container-fluid">
 			<!-- OVERVIEW -->
@@ -359,7 +359,7 @@
 			</div>
 		</div>
 	</div>
-	<!-- END MAIN CONTENT -->
+	<!-- END MAIN CONTENT -->  --}}
 </div>
 <!-- END MAIN -->
 @endsection

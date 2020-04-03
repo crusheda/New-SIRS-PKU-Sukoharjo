@@ -13,9 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/adm', function () {
-    return view('index');
-});
 Route::get('admin/charts', function () {   return view('page.admin.charts');   });
 Route::get('admin/elements', function () {   return view('page.admin.elements');   });
 Route::get('admin/icons', function () {   return view('page.admin.icons');   });
@@ -102,5 +99,8 @@ Route::get('/home', 'HomeController@index')->name('home');
         Route::get('/dashboard', function(){return view('page.other-role.dashboard');})->name('other.role.dashboard');
     });
 
-    // Page User
-    Route::get('/datakamar', 'PasienController@index')->name('user');
+    // Page Guest
+    Route::get('/', function () {
+        return view('page.guest.landing-page');
+    });
+    Route::get('/infokamar', 'PasienController@index')->name('info.kamar');

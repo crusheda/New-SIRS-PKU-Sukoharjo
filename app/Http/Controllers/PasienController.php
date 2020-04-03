@@ -205,7 +205,7 @@ class PasienController extends Controller
             'totperin' => $query_perintot,
             'now' => $now
             ];
-        return view('datakamar')->with('list', $datakamar);
+        return view('page.guest.info-kamar')->with('list', $datakamar);
     }
 
     /**

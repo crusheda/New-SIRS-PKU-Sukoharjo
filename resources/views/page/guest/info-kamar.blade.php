@@ -3,8 +3,8 @@
 
 <head>
 
-  <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('img/pku_brand.png') }}">
-  <link rel="icon" type="image/png" href="{{ asset('img/pku_brand.png') }}">
+  <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('sb-admin2/img/pku_brand.png') }}">
+  <link rel="icon" type="image/png" href="{{ asset('sb-admin2/img/pku_brand.png') }}">
 
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,19 +13,19 @@
   <meta name="description" content="Rumah Sakit PKU Muhammadiyah Sukoharjo">
   <meta name="author" content="Yussuf | IT">
 
-  <title>Kunjungan Pasien - RS PKU Muhammadiyah Sukoharjo</title>
+  <title>Info Tempat Tidur | Rumah Sakit PKU Muhammadiyah Sukoharjo</title>
 
   <!-- Custom fonts for this template-->
-  <link href="{{ asset('vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
+  <link href="{{ asset('sb-admin2/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
   <!-- Custom styles for this template-->
-  {{-- <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet"> --}}
-  <link href="{{ asset('css/sb-admin-2.min.css') }}" rel="stylesheet">
-  <link href="{{ asset('css/bootstrap-datetimepicker.min.css') }}" rel="stylesheet">
-  <script src="{{ asset('vendor/jquery/jquery.js') }}"></script>
-  <script src="{{ asset('js/moment.min.js') }}"></script>
-  <script src="{{ asset('js/bootstrap-datetimepicker.min.js') }}"></script>
+  {{-- <link href="{{ asset('sb-admin2/css/bootstrap.css') }}" rel="stylesheet"> --}}
+  <link href="{{ asset('sb-admin2/css/sb-admin-2.min.css') }}" rel="stylesheet">
+  <link href="{{ asset('sb-admin2/css/bootstrap-datetimepicker.min.css') }}" rel="stylesheet">
+  <script src="{{ asset('sb-admin2/vendor/jquery/jquery.js') }}"></script>
+  <script src="{{ asset('sb-admin2/js/moment.min.js') }}"></script>
+  <script src="{{ asset('sb-admin2/js/bootstrap-datetimepicker.min.js') }}"></script>
 </head>
 <style>
 @media screen and (max-width: 400px) {
@@ -229,7 +229,7 @@
             <!-- Footer -->
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
-                <div class="copyright text-center my-auto"><span>RS PKU Muhammadiyah Sukoharjo</span>
+                <div class="copyright text-center my-auto"><p class="text-muted mb-0">Copyright &copy; IT Support 2020</p>
                 </div>
                 </div>
             </footer>
@@ -241,13 +241,13 @@
     </div>
     <!-- End of Page Wrapper -->
 
-    <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('sb-admin2/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
     <!-- Core plugin JavaScript-->
-    <script src="{{ asset('vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+    <script src="{{ asset('sb-admin2/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="{{ asset('js/sb-admin-2.min.js') }}"></script>
+    <script src="{{ asset('sb-admin2/js/sb-admin-2.min.js') }}"></script>
 
 </body>
 
