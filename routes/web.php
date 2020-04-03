@@ -33,6 +33,7 @@ Route::get('/direktur/login', 'Auth\LoginController@showDirekturLoginForm')->nam
 Route::get('/farmasi/login', 'Auth\LoginController@showFarmasiLoginForm')->name('view.login.farmasi');
 Route::get('/kantor/login', 'Auth\LoginController@showKantorLoginForm')->name('view.login.kantor');
 Route::get('/keuangan/login', 'Auth\LoginController@showKeuanganLoginForm')->name('view.login.keuangan');
+Route::get('/kebidanan/login', 'Auth\LoginController@showKebidananLoginForm')->name('view.login.kebidanan');
 Route::get('/other_role/login', 'Auth\LoginController@showOtherRoleLoginForm')->name('view.login.other.role');
 
 // Login POST
@@ -41,6 +42,7 @@ Route::post('/direktur/login', 'Auth\LoginController@loginDirektur')->name('post
 Route::post('/farmasi/login', 'Auth\LoginController@loginFarmasi')->name('post.login.farmasi');
 Route::post('/kantor/login', 'Auth\LoginController@loginKantor')->name('post.login.kantor');
 Route::post('/keuangan/login', 'Auth\LoginController@loginKeuangan')->name('post.login.keuangan');
+Route::post('/kebidanan/login', 'Auth\LoginController@loginKebidanan')->name('post.login.kebidanan');
 Route::post('/other_role/login', 'Auth\LoginController@loginOtherRole')->name('post.login.other.role');
 
 // Logout PASS
@@ -85,6 +87,13 @@ Route::get('/home', 'HomeController@index')->name('home');
     Route::middleware(['auth:keuangan'])->prefix('keuangan')->group(function (){
         Route::get('/', function(){return view('page.keuangan.dashboard');})->name('keuangan.dashboard');
         Route::get('/dashboard', function(){return view('page.keuangan.dashboard');})->name('keuangan.dashboard');
+    });
+
+    // Page Kebidanan
+    Route::middleware(['auth:kebidanan'])->prefix('kebidanan')->group(function (){
+        Route::get('/', function(){return view('page.kebidanan.dashboard');})->name('kebidanan.dashboard');
+        Route::get('/dashboard', function(){return view('page.kebidanan.dashboard');})->name('kebidanan.dashboard');
+        Route::get('/skl', function(){return view('page.kebidanan.skl');})->name('kebidanan.skl');
     });
 
     // Page Other_Role

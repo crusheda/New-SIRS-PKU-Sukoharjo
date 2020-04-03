@@ -38,6 +38,10 @@ class RedirectIfAuthenticated
             return redirect('/keuangan/dashboard');
         }
 
+        if (Auth::guard('kebidanan')->check()) {
+            return redirect('/kebidanan/dashboard');
+        }
+
         if (Auth::guard('other_role')->check()) {
             return redirect('/other_role/dashboard');
         }

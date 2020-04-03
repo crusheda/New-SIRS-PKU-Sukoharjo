@@ -31,6 +31,9 @@ class Authenticate extends Middleware
             elseif(Route::is('keuangan.*')){
                 return route('view.login.keuangan');
             }
+            elseif(Route::is('kebidanan.*')){
+                return route('view.login.kebidanan');
+            }
             else {
                 return route('view.login.other.role');
             }

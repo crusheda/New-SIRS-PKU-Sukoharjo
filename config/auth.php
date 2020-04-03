@@ -65,6 +65,11 @@ return [
             'driver' => 'session',
             'provider' => 'keuangan',
         ],
+
+        'kebidanan' => [
+            'driver' => 'session',
+            'provider' => 'kebidanan',
+        ],
     ],
 
     /*
@@ -113,6 +118,11 @@ return [
         'keuangan' => [
             'driver' => 'eloquent',
             'model' => App\Models\Keuangan::class,
+        ],
+
+        'kebidanan' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Kebidanan::class,
         ],
 
         // 'users' => [
