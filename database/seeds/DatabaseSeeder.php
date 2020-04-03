@@ -11,6 +11,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        // unchecklist after used
+
         // $this->call(AdminTableSeeder::class);
         // $this->call(OtherRoleTableSeeder::class);
         // $this->call(DirekturTableSeeder::class);
