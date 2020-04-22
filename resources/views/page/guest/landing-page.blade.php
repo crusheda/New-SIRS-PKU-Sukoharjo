@@ -20,7 +20,7 @@
 
   <!-- Custom CSS -->
   <link href="{{ asset('css-landing/css/stylish-portfolio.min.css') }}" rel="stylesheet">
-  
+
   <!-- ICONS -->
   <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('assets/img/apple-icon.png') }}">
   <link rel="icon" type="image/png" sizes="96x96" href="{{ asset('sb-admin2/img/pku_ico.png') }}">
@@ -36,7 +36,7 @@
   <nav id="sidebar-wrapper">
     <ul class="sidebar-nav">
       <li class="sidebar-brand">
-        <a class="js-scroll-trigger" href="#">Menu Login</a>
+        <a class="js-scroll-trigger">Menu Login</a>
       </li>
       <li class="sidebar-nav-item">
         <a class="js-scroll-trigger" href="{{ route('view.login.direktur') }}">Direktur</a>
@@ -52,9 +52,9 @@
       </li>
       <li class="sidebar-nav-item">
         <a class="js-scroll-trigger" href="{{ route('view.login.kebidanan') }}">Kebidanan</a>
-      </li>
+      </li><hr style="border-color:white;background-color:white">
       <li class="sidebar-nav-item" style="pointer-events:none;opacity:0.6;">
-        <a class="js-scroll-trigger" style="" href="">Laporkan Bug?<br>Telp IT: <b>102</b> (Lokal)</a>
+        <a class="js-scroll-trigger" style="" href="">Laporkan Bug?<br>Telp. IT: <b>102</b> (Lokal)</a>
       </li>
     </ul>
   </nav>
@@ -63,7 +63,7 @@
   <header class="content-section bg-primary text-white text-center" style="">
     <div class="container text-center my-auto">
       <img class="img-fluid" style="width:100px" src="{{ asset('sb-admin2/img/LogoClear.png') }}" alt=""><p></p>
-      <h2 class="mb-1">(diisi Seirama Pku)</h2><hr style="border-color:white;background-color:white">
+      <h2 class="mb-1">Amanah, Santun, Ramah, Ikhlas</h2><hr style="border-color:white;background-color:white">
       <h3>Rumah Sakit PKU Muhammadiyah Sukoharjo</h3>
       <h5 class="mb-1">
         Jl. Mayor Sunaryo No. 37 Sukoharjo (57512)
@@ -86,7 +86,7 @@
       </div>
     </div>
   </section>
-  
+
   <hr>
 
   <!-- Footer -->
