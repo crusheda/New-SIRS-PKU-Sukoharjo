@@ -91,6 +91,7 @@
 							<option value="28">28</option>
 							<option value="29">29</option>
 							<option value="30">30</option>
+							<option value="31">31</option>
 						</select>
 						<select onchange="submitBtn()" class="form-control" style="width: auto;margin-right:10px" name="bulan" id="bulan" required>
 							<option hidden selected>Bln</option>
@@ -110,7 +111,8 @@
 						<select onchange="submitBtn()" class="form-control" style="width: auto;margin-right:10px" name="tahun" id="tahun" required>
 							<option hidden selected>Thn</option>
 							<option value="2020">2020</option>
-							<option value="2019">2019</option>
+                            <option value="2019">2019</option>
+							<option value="2018">2018</option>
 						</select>
 						<button id="submit" disabled><span class="badge">Submit</span></button>
 					</form>
