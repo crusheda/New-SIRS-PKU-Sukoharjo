@@ -29,6 +29,7 @@ Route::get('/admin/login', 'Auth\LoginController@showAdminLoginForm')->name('vie
 Route::get('/direktur/login', 'Auth\LoginController@showDirekturLoginForm')->name('view.login.direktur');
 Route::get('/farmasi/login', 'Auth\LoginController@showFarmasiLoginForm')->name('view.login.farmasi');
 Route::get('/kantor/login', 'Auth\LoginController@showKantorLoginForm')->name('view.login.kantor');
+Route::get('/rm/login', 'Auth\LoginController@showRMLoginForm')->name('view.login.rm');
 Route::get('/keuangan/login', 'Auth\LoginController@showKeuanganLoginForm')->name('view.login.keuangan');
 Route::get('/kebidanan/login', 'Auth\LoginController@showKebidananLoginForm')->name('view.login.kebidanan');
 Route::get('/other_role/login', 'Auth\LoginController@showOtherRoleLoginForm')->name('view.login.other.role');
@@ -38,6 +39,7 @@ Route::post('/admin/login', 'Auth\LoginController@loginAdmin')->name('post.login
 Route::post('/direktur/login', 'Auth\LoginController@loginDirektur')->name('post.login.direktur');
 Route::post('/farmasi/login', 'Auth\LoginController@loginFarmasi')->name('post.login.farmasi');
 Route::post('/kantor/login', 'Auth\LoginController@loginKantor')->name('post.login.kantor');
+Route::post('/rm/login', 'Auth\LoginController@loginRM')->name('post.login.rm');
 Route::post('/keuangan/login', 'Auth\LoginController@loginKeuangan')->name('post.login.keuangan');
 Route::post('/kebidanan/login', 'Auth\LoginController@loginKebidanan')->name('post.login.kebidanan');
 Route::post('/other_role/login', 'Auth\LoginController@loginOtherRole')->name('post.login.other.role');
@@ -63,6 +65,7 @@ Route::get('/home', 'HomeController@index')->name('home');
         Route::get('/rekapharian/cari', 'KunjunganController@filterKunjungan')->name('direktur.rekapharian.cari');
         Route::get('/kamar', 'KamarController@index')->name('direktur.kamar');
         Route::get('/cetakpdf','KunjunganController@generatePDF')->name('direktur.cetak');
+        Route::get('/cetakpdfold','KunjunganController@generatePDFold')->name('direktur.cetakold');
     });
 
     // Page Farmasi
@@ -72,6 +75,13 @@ Route::get('/home', 'HomeController@index')->name('home');
         Route::get('/lisinopril', 'PelayananController@obatLisinopril')->name('farmasi.lisinopril');
         Route::get('/tanapres', 'PelayananController@obatTanapres')->name('farmasi.tanapres');
         Route::get('/captopril', 'PelayananController@obatCaptopril')->name('farmasi.captopril');
+    });
+
+    // Page RM
+    Route::middleware(['auth:rm'])->prefix('rm')->group(function (){
+        // Route::get('/', function(){return view('page.rm.dashboard');})->name('rm.dashboard');
+        Route::get('/dashboard', 'RekamMedikController@index')->name('rm.dashboard');
+        Route::get('/rekapusia', 'RekamMedikController@rekapUsia')->name('rm.rekapusia');
     });
 
     // Page Kantor

@@ -57,6 +57,11 @@ class LoginController extends Controller
         return view('auth.login.page.login-admin');
     }
 
+    public function showRMLoginForm()
+    {
+        return view('auth.login.page.login-rm');
+    }
+
     public function showFarmasiLoginForm()
     {
         return view('auth.login.page.login-farmasi');
@@ -145,6 +150,32 @@ class LoginController extends Controller
 
         if ($this->attemptLogin($request, 'direktur')) {
             return $this->sendLoginResponse($request, '/direktur/dashboard');
+        }
+
+        // If the login attempt was unsuccessful we will increment the number of attempts
+        // to login and redirect the user back to the login form. Of course, when this
+        // user surpasses their maximum number of attempts they will get locked out.
+        $this->incrementLoginAttempts($request);
+
+        return $this->sendFailedLoginResponse($request);
+    }
+
+    public function loginRM(Request $request)
+    {
+        $this->validateLogin($request);
+
+        // If the class is using the ThrottlesLogins trait, we can automatically throttle
+        // the login attempts for this application. We'll key this by the username and
+        // the IP address of the client making these requests into this application.
+        if (method_exists($this, 'hasTooManyLoginAttempts') &&
+            $this->hasTooManyLoginAttempts($request)) {
+            $this->fireLockoutEvent($request);
+
+            return $this->sendLockoutResponse($request);
+        }
+
+        if ($this->attemptLogin($request, 'rm')) {
+            return $this->sendLoginResponse($request, '/rm/dashboard');
         }
 
         // If the login attempt was unsuccessful we will increment the number of attempts

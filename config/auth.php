@@ -51,6 +51,11 @@ return [
             'provider' => 'direktur',
         ],
 
+        'rm' => [
+            'driver' => 'session',
+            'provider' => 'rm',
+        ],
+
         'farmasi' => [
             'driver' => 'session',
             'provider' => 'farmasi',
@@ -103,6 +108,11 @@ return [
         'direktur' => [
             'driver' => 'eloquent',
             'model' => App\Models\Direktur::class,
+        ],
+
+        'rm' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\rm::class,
         ],
 
         'farmasi' => [

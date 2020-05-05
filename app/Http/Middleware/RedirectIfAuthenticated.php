@@ -26,6 +26,10 @@ class RedirectIfAuthenticated
             return redirect('/direktur/dashboard');
         }
 
+        if (Auth::guard('rm')->check()) {
+            return redirect('/rm/dashboard');
+        }
+
         if (Auth::guard('farmasi')->check()) {
             return redirect('/farmasi/dashboard');
         }

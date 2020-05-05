@@ -22,6 +22,9 @@ class Authenticate extends Middleware
             elseif(Route::is('direktur.*')){
                 return route('view.login.direktur');
             }
+            elseif(Route::is('rm.*')){
+                return route('view.login.rm');
+            }
             elseif(Route::is('farmasi.*')){
                 return route('view.login.farmasi');
             }

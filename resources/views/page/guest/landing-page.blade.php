@@ -52,6 +52,9 @@
       </li>
       <li class="sidebar-nav-item">
         <a class="js-scroll-trigger" href="{{ route('view.login.kebidanan') }}">Kebidanan</a>
+      </li>
+      <li class="sidebar-nav-item">
+        <a class="js-scroll-trigger" href="http://192.168.1.2/sismadak">Sismadak</a>
       </li><hr style="border-color:white;background-color:white">
       <li class="sidebar-nav-item" style="pointer-events:none;opacity:0.6;">
         <a class="js-scroll-trigger" style="" href="">Laporkan Bug?<br>Telp. IT: <b>102</b> (Lokal)</a>
