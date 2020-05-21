@@ -13,7 +13,7 @@
     <script src="{{ asset('css-farmasi/js/vendor/modernizr-2.8.3.min.js') }}"></script>
 </head>
 
-<body>  --}}
+<body>
 <div class="main">
 	<!-- MAIN CONTENT -->
 	<div class="main-content">

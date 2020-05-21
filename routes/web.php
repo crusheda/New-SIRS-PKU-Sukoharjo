@@ -82,6 +82,10 @@ Route::get('/home', 'HomeController@index')->name('home');
         // Route::get('/', function(){return view('page.rm.dashboard');})->name('rm.dashboard');
         Route::get('/dashboard', 'RekamMedikController@index')->name('rm.dashboard');
         Route::get('/rekapusia', 'RekamMedikController@rekapUsia')->name('rm.rekapusia');
+        Route::get('/rekapusia/poli', 'RekamMedikController@rekapUsiaPoli')->name('rm.rekapusiapoli');
+        Route::get('/rekapusia/cetak', 'RekamMedikController@cetakRekapUsia')->name('rm.rekapusia.cetak');
+        Route::get('/rekapusia/old', 'RekamMedikController@kunjunganPasienOld')->name('rm.rekapusiaold');
+        Route::get('/rekapusia/old/cetak', 'RekamMedikController@cetakRekapUsiaold')->name('rm.rekapusiaold.cetak');
     });
 
     // Page Kantor
