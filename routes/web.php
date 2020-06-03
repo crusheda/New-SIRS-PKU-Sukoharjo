@@ -92,6 +92,9 @@ Route::get('/home', 'HomeController@index')->name('home');
     Route::middleware(['auth:kantor'])->prefix('kantor')->group(function (){
         Route::get('/', function(){return view('page.kantor.dashboard');})->name('kantor.dashboard');
         Route::get('/dashboard', function(){return view('page.kantor.dashboard');})->name('kantor.dashboard');
+        Route::resource('/rapat', 'KantorController');
+        // Route::get('/download/{id}', 'KantorController@download')->name('rapat.download');
+        // Route::post('rapat/create/upload', 'KantorController@upload')->name('rapat.upload');
     });
 
     // Page Keuangan
